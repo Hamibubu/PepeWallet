@@ -1,0 +1,62 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url('https://source.unsplash.com/1600x900/?bitcoin') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.pantalla{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    border: none;
+    background-color: #141e28;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    background-origin: 5px;
+    border-radius: 20px;
+}
+
+#home-button {
+    position: relative;
+    top: 20px; 
+    left: 20px; 
+    background-color: rgba(247, 171, 72, 0.5); 
+    padding: 5px;
+    border-radius: 4px;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: #f79336;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #ad6827;
+}
+
+.form-control:focus {
+    border-color: #f79336; 
+    background-color: #acdfe0;
+    outline: none
+}
+
+.form-control {
+    border-color: #f79336; 
+    background-color: #fff;
+    outline: none;
+}
+
+.form-check-label {
+    color: #fff;
+}
+
+#q {
+    color: #acdfe0;
+}

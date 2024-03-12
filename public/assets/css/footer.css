@@ -1,0 +1,12 @@
+footer {
+    text-align: center;
+    background-color: #141e28;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    color: white;
+    margin-top: 5%;
+    padding: 10px;
+    z-index: 1000; /* Asegúrate de que el z-index sea alto para que el footer esté sobre otros elementos */
+    width: 100%;
+}
