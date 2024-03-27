@@ -6,6 +6,7 @@ const path = require('path');
 const signerRoutes = require('./src/routes/signUserRoutes');
 const buyerRoutes = require('./src/routes/buyUserRoutes');
 const usersRoutes = require('./src/routes/usersRoutes');
+const transactionsRoutes = require('./src/routes/transactionRoutes');
 
 const app = express();
 
@@ -18,9 +19,11 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api', signerRoutes);
 app.use('/api', buyerRoutes);
 app.use('/api', usersRoutes);
+app.use('/api', transactionsRoutes);
 
 const port = process.env.PORT || 3000;
 

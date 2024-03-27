@@ -1,8 +1,30 @@
 var logged = false;
 
-document.addEventListener('DOMContentLoaded', function() {
-    welcome();
-});
+
+welcome();
+getMoney();
+
+
+function getMoney(){
+    $.ajax({
+        type: "GET",
+        url: "/api/money",
+        success: function(response) {
+            $('#dlls strong').text("$ " + response.dollars + " DLLs");
+            $('#btc strong').text(response.currentBTC + " BTC");
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            Swal.fire({
+                toast: true,
+                position: 'top-right',
+                icon: 'info',
+                title: 'Error obteniendo tu dinero!',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        }
+      });
+}
 
 function welcome() {
     $.ajax({
@@ -29,11 +51,15 @@ function welcome() {
             if(!response.includes("Buyer")){
                 $('#compra').remove();
             }
+            if(!response.includes("Signer")){
+                $('#pendientes').remove();
+            }
             const cerrarSesionLi = $('<li><button id="logout-button" class="dropdown-item" onclick="logout()">Cerrar Sesión</button></li>');
             perfilDropdown.append(cerrarSesionLi);
             logged = true;
         },
         error: function(xhr, textStatus, errorThrown) {
+            window.location.href = "./../../views/contacto/contactanos.html"
             Swal.fire({
                 toast: true,
                 position: 'top-right',

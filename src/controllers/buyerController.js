@@ -1,12 +1,13 @@
 const { response } = require('express');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
 class BuyerController {
     async iniciarsesion(req,res) {
         try{
             let signer = "pepe@pepewallet.com"
             let password = "pepe123"
+            const email = req.body.email;
             if (req.body.email != signer) {
                 return res.status(400).send({ message: 'El email no está registrado' });
             } 
@@ -32,7 +33,6 @@ class BuyerController {
         const userType = req.user.userType;
         res.send(`Bienvenido, ${username} (${userType})`);
     }
-
 }
 
 module.exports = new BuyerController();
