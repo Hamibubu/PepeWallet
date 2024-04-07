@@ -11,7 +11,7 @@ function getMoney(){
         url: "/api/money",
         success: function(response) {
             $('#dlls strong').text("$ " + response.dollars + " DLLs");
-            $('#btc strong').text(response.currentBTC + " BTC");
+            $('#btc strong').text(response.current + " BSV");
         },
         error: function(xhr, textStatus, errorThrown) {
             Swal.fire({
@@ -68,6 +68,18 @@ function welcome() {
                 showConfirmButton: false,
                 timer: 3000
             })
+        }
+      });
+}
+
+function agregarFondos() {
+    $.ajax({
+        type: "GET",
+        url: "/api/funds",
+        success: function(response) {
+            
+        },
+        error: function(xhr, textStatus, errorThrown) {
         }
       });
 }

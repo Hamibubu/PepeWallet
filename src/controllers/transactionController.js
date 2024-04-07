@@ -2,6 +2,7 @@ const { response } = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const axios = require('axios');
+require('dotenv').config();
 
 class TransactionController {
     async getTransaction(req, res) {
@@ -35,10 +36,12 @@ class TransactionController {
 
     async getCurrentMoney(req, res) {
         try {
-            const currentBTC = 0.01;
+            let add = process.env.Address;
+            const currentBSV = await getBsvAddressBalance(add);
+            let current = currentBSV.confirmed / 1e8;
             let btcPriceInUSD = await getPrice();
-            const dollars = btcPriceInUSD * currentBTC;
-            res.send({ dollars, currentBTC }); 
+            const dollars = btcPriceInUSD * current;
+            res.send({ dollars, current }); 
         } catch (err) {
             console.error('Login error: ', err);
             res.status(500).send("Error interno");
@@ -118,10 +121,21 @@ class TransactionController {
 }
 
 async function getPrice(){
-    const cryptoApiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
+    const cryptoApiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin-cash-sv&vs_currencies=usd';
     const response = await axios.get(cryptoApiUrl);
-    let btcPriceInUSD = response.data.bitcoin.usd;
+    let btcPriceInUSD = response.data['bitcoin-cash-sv'].usd;
     return btcPriceInUSD;
 }
+
+async function getBsvAddressBalance(add) {
+    const url = `https://api.whatsonchain.com/v1/bsv/main/address/${add}/balance`;
+    try {
+      const response = await axios.get(url);
+      let data = response.data;
+      return data;
+    } catch (error) {
+      console.error('Error al realizar la solicitud:', error);
+    }
+  }
 
 module.exports = new TransactionController();
