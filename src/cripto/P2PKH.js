@@ -1,4 +1,4 @@
-const bsv = require('bsv');
+const bsv = require('@bsv/sdk');
 const kms = require('./KMS')
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const { DynamoDBDocumentClient, PutCommand, GetCommand } = require("@aws-sdk/lib-dynamodb");

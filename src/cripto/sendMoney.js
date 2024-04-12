@@ -5,6 +5,7 @@ const { DynamoDBDocumentClient, ScanCommand } = require("@aws-sdk/lib-dynamodb")
 const axios = require('axios')
 require('dotenv').config();
 
+
 const docClient = new DynamoDBClient({ 
     region: process.env.AWS_REGION_B,
     credentials: {
@@ -17,9 +18,9 @@ async function main() {
     info = await getWallerPkey("1");
     plain = await kms.decrypt(Buffer.from(info[0].privateKeyEncrypted, 'base64'));
     add = info[0].add;
+    console.log(info)
     const privkey = String.fromCharCode(...plain);
     const privKey = bsv.PrivateKey.fromWif(privkey)
-    multi=bsv.Script.fromASM(process.env.MULTI)
     let data4utxo = await consult(add);
     const txHex = await fetchTransaction(data4utxo.tx_hash);
     const sourceTransaction = bsv.Transaction.fromHex(txHex)

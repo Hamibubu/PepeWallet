@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         icon: 'success',
                         title: 'Iniciando sesion...',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 100000
                     })
                     setTimeout(() => {
                         let timerInterval

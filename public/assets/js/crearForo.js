@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         const formData = new FormData();
         formData.append('Item', $('#Item').val());
+        formData.append('Address', $('#Address').val());
         formData.append('Descripcion', $('#Descripcion').val());
         formData.append('precio', $('#precio').val());
         const archivoInput = $('#imagen')[0];

@@ -27,12 +27,12 @@ $.ajax({
 
             const cardTitle = document.createElement("h2");
             cardTitle.className = "card-title text-center";
-            cardTitle.textContent = `${transaccion.title}`;
+            cardTitle.textContent = `${transaccion.item}`;
             cardBody.appendChild(cardTitle);
 
             const cardText = document.createElement("p");
             cardText.className = "card-text";
-            cardText.textContent = `${transaccion.description} -> ${transaccion.precio}`; 
+            cardText.textContent = `${transaccion.description}`; 
             cardBody.appendChild(cardText);
 
             document.getElementById('trnd').appendChild(colDiv);

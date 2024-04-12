@@ -17,10 +17,10 @@ class SignerController {
         try{
             let user = await getUserByEmail(req.body.email);
             user = user[0];
-            let mail = user.Mail;
-            if (!user.Mail) {
+            if (!user) {
                 return res.status(400).send({ message: 'El email no está registrado' });
-            } 
+            }
+            let mail = user.mail;
             const isMatch = await bcrypt.compare(req.body.password, user.password);
             if (!isMatch) {
                 return res.status(400).send({ message: 'Contraseña incorrecta' });

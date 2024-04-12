@@ -14,6 +14,8 @@ function acceptTransaction(transactionID) {
         contentType: false,
         success: function (datos) {
             $(`#${transactionID}`).remove();
+            alertaPersonalizada('success', "Consulta -> "+datos.txid)
+            console.log(txid)
         },
         error: function (error) {
             alertaPersonalizada('error', error.responseText);
@@ -106,7 +108,7 @@ function alertaPersonalizada(type, msg) {
         icon: type,
         title: msg,
         showConfirmButton: false,
-        timer: 3000
+        timer: 10000
     })
 }
 
